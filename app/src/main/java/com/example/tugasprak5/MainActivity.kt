@@ -128,3 +128,110 @@ fun BiodataScreen() {
                         color = colorResource(id = R.color.text_secondary),
                         modifier = Modifier.padding(top = 4.dp, bottom = 20.dp)
                     )
+
+                    // Input Nama Depan & Nama Belakang
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = firstName,
+                            onValueChange = { firstName = it },
+                            placeholder = { Text(stringResource(id = R.string.hint_first_name)) },
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(12.dp)
+                        )
+                        OutlinedTextField(
+                            value = lastName,
+                            onValueChange = { lastName = it },
+                            placeholder = { Text(stringResource(id = R.string.hint_last_name)) },
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(12.dp)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Input Email
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        placeholder = { Text(stringResource(id = R.string.hint_email)) },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Input Tgl Lahir & Experience (Dropdown)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        // Tgl Lahir dengan DatePicker Dialog
+                        Box(modifier = Modifier.weight(1f)) {
+                            OutlinedTextField(
+                                value = dob,
+                                onValueChange = {},
+                                readOnly = true,
+                                placeholder = { Text(stringResource(id = R.string.hint_dob)) },
+                                trailingIcon = {
+                                    Icon(
+                                        painter = painterResource(id = android.R.drawable.ic_menu_my_calendar),
+                                        contentDescription = null
+                                    )
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable { datePickerDialog.show() },
+                                enabled = false,
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    disabledTextColor = MaterialTheme.colorScheme.onSurface,
+                                    disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledBorderColor = MaterialTheme.colorScheme.outline
+                                ),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .matchParentSize()
+                                    .clickable { datePickerDialog.show() }
+                            )
+                        }
+
+                        // Experience Dropdown Menu
+                        ExposedDropdownMenuBox(
+                            expanded = expandedExperience,
+                            onExpandedChange = { expandedExperience = !expandedExperience },
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            OutlinedTextField(
+                                value = experience,
+                                onValueChange = {},
+                                readOnly = true,
+                                placeholder = { Text(stringResource(id = R.string.hint_experience)) },
+                                trailingIcon = {
+                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedExperience)
+                                },
+                                modifier = Modifier
+                                    .menuAnchor()
+                                    .fillMaxWidth(),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+
+                            ExposedDropdownMenu(
+                                expanded = expandedExperience,
+                                onDismissRequest = { expandedExperience = false }
+                            ) {
+                                experienceOptions.forEach { selectionOption ->
+                                    DropdownMenuItem(
+                                        text = { Text(selectionOption) },
+                                        onClick = {
+                                            experience = selectionOption
+                                            expandedExperience = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                    }
