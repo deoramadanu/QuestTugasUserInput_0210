@@ -92,3 +92,39 @@ fun BiodataScreen() {
                 modifier = Modifier.fillMaxSize()
             )
         }
+
+        // 2. Card Form Mengapung
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(180.dp))
+
+            Card(
+                shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.form_title),
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colorResource(id = R.color.purple_primary)
+                    )
+                    Text(
+                        text = stringResource(id = R.string.form_subtitle),
+                        fontSize = 12.sp,
+                        color = colorResource(id = R.color.text_secondary),
+                        modifier = Modifier.padding(top = 4.dp, bottom = 20.dp)
+                    )
