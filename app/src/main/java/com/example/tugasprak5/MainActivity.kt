@@ -73,3 +73,22 @@ fun BiodataScreen() {
         calendar.get(Calendar.MONTH),
         calendar.get(Calendar.DAY_OF_MONTH)
     )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.scrim)
+    ) {
+        // 1. Header Gambar Motor
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(280.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.motor_header),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
