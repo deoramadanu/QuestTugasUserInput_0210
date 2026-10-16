@@ -1,4 +1,5 @@
 <resources>
     <color name="purple_primary">#6200EE</color>
     <color name="purple_container">#EDE7F6</color>
+    <color name="text_secondary">#757575</color>
 </resources>
