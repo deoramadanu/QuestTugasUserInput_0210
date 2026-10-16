@@ -60,3 +60,16 @@ fun BiodataScreen() {
     // State untuk Dropdown Experience
     var expandedExperience by remember { mutableStateOf(false) }
     val experienceOptions = listOf("Beginner", "Intermediate", "Expert")
+
+    // Konteks untuk DatePicker & Toast
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+    val datePickerDialog = DatePickerDialog(
+        context,
+        { _, year, month, dayOfMonth ->
+            dob = "$dayOfMonth/${month + 1}/$year"
+        },
+        calendar.get(Calendar.YEAR),
+        calendar.get(Calendar.MONTH),
+        calendar.get(Calendar.DAY_OF_MONTH)
+    )
