@@ -43,3 +43,20 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BiodataScreen() {
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var dob by remember { mutableStateOf("") }
+    var experience by remember { mutableStateOf("") }
+
+    var isAndroidChecked by remember { mutableStateOf(false) }
+    var isUiUxChecked by remember { mutableStateOf(false) }
+    var isWebChecked by remember { mutableStateOf(false) }
+
+    // State untuk Dropdown Experience
+    var expandedExperience by remember { mutableStateOf(false) }
+    val experienceOptions = listOf("Beginner", "Intermediate", "Expert")
